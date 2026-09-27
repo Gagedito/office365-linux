@@ -179,6 +179,7 @@ curl -fsSL https://raw.githubusercontent.com/Leimsoto/office365-linux/main/scrip
 | 12 | Reparar pantalla de inicio de sesión en blanco (Desactivar WAM / Forzar ADAL) |
 | 13 | Instalar paquete de idioma adicional (descarga directa + auto-fuentes CJK + fix login) |
 | 14 | Desactivar cloud fonts (fix desplegable de fuentes congelado) |
+| 15 | Instalar LAV Filters + redirigir splitter (fix audio en PowerPoint) |
 
 ### Atajos manuales
 

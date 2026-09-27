@@ -626,6 +626,64 @@ EOF
 }
 
 # ============================================================
+# 15) Instalar LAV Filters + redirigir splitter (fix audio en PowerPoint)
+# ============================================================
+install_lav_audio_fix() {
+  [ -d "$PREFIX" ] || die "Prefix $PREFIX no existe"
+  LDP="LD_LIBRARY_PATH=/opt/winecx/lib:/opt/winecx/lib32:/opt/winecx/lib/wine"
+  WINE=/opt/winecx/bin/wine
+  LAV_VER="0.79.2"
+  LAV_DIR="$HOME/.cache/office365-linux"
+  LAV_EXE="$LAV_DIR/LAVFilters-$LAV_VER-Installer.exe"
+  LAV_URL="https://github.com/Nevcairiel/LAVFilters/releases/download/$LAV_VER/LAVFilters-$LAV_VER-Installer.exe"
+  LAV_AX="$PREFIX/drive_c/Program Files/LAV Filters/x86/LAVSplitter.ax"
+
+  cat <<'EOF'
+  PowerPoint muestra "codec no disponible" porque el quartz de WineCX
+  no trae parsers (MPEG-I/AVI/Wave) ni backend gstreamer.
+  Este fix instala LAV Filters y redirige el splitter MPEG-I hacia
+  LAV Splitter para que el autoplug arme el grafo de audio MP3.
+  Tus documentos y el resto del sistema no se tocan.
+EOF
+  warn "Se descargarán ~15 MB y se cerrará Word/Excel/PowerPoint."
+  read -r -p "¿Continuar? [y/N]: " ans </dev/tty
+  [[ ! "$ans" =~ ^[Yy]$ ]] && { log "Cancelado"; return; }
+
+  if [ -f "$LAV_AX" ]; then
+    log "LAV Filters ya instalado, omitiendo descarga/instalación"
+  else
+    log "Descargando LAV Filters $LAV_VER..."
+    mkdir -p "$LAV_DIR"
+    curl -fL --retry 2 -o "$LAV_EXE" "$LAV_URL" || die "No se pudo descargar LAV Filters"
+    log "Instalando en silencio..."
+    env $LDP WINEPREFIX="$PREFIX" $WINE "$LAV_EXE" /S 2>/dev/null || die "Falló el instalador de LAV"
+  fi
+
+  log "Redirigiendo splitter MPEG-I hacia LAV Splitter..."
+  env $LDP WINEPREFIX="$PREFIX" $WINE reg add \
+    "HKLM\\Software\\Classes\\CLSID\\{083863F1-70DE-11D0-BD40-00A0C911CE86}\\Instance\\{336475D0-942A-11CE-A870-00AA002FEAB5}" \
+    /v CLSID /t REG_SZ /d "{171252A0-8820-4AFE-9DF8-5C92B2D66B04}" /f 2>/dev/null || \
+    die "No se pudo escribir el registro"
+
+  log "Verificando..."
+  if env $LDP WINEPREFIX="$PREFIX" $WINE reg query \
+    "HKLM\\Software\\Classes\\CLSID\\{083863F1-70DE-11D0-BD40-00A0C911CE86}\\Instance\\{336475D0-942A-11CE-A870-00AA002FEAB5}" \
+    /v CLSID 2>/dev/null | grep -qi '171252A0'; then
+    ok "Splitter redirigido a LAV Splitter"
+  else
+    warn "No se pudo verificar (reintenta)"
+  fi
+
+  log "Apagado graceful para flushear el registro a disco (kill -9 lo perdería)..."
+  env $LDP WINEPREFIX="$PREFIX" $WINE wineboot -e 2>/dev/null || true
+  env $LDP WINEPREFIX="$PREFIX" /opt/winecx/bin/wineserver -k 2>/dev/null || true
+
+  ok "Listo. Re-lanza PowerPoint y prueba el audio embebido (MP3)."
+  warn "Si desinstalas LAV Filters, re-ejecuta esta opción para re-registrar."
+  log "Revertir: restaurar CLSID {336475D0-942A-11CE-A870-00AA002FEAB5} en la misma clave del registro."
+}
+
+# ============================================================
 # MENU
 # ============================================================
 menu() {
@@ -650,6 +708,7 @@ menu() {
  12) Reparar pantalla de inicio de sesión en blanco (Desactivar WAM / Forzar ADAL)
   13) Instalar paquete de idioma adicional (zh-cn, en-us, pt-br, etc.)
   14) Desactivar cloud fonts (fix desplegable de fuentes congelado)
+  15) Instalar LAV Filters + redirigir splitter (fix audio en PowerPoint)
    q) Salir
 
 EOF
@@ -669,6 +728,7 @@ EOF
     12) fix_blank_login ;;
     13) install_language_pack ;;
     14) disable_cloud_fonts ;;
+    15) install_lav_audio_fix ;;
     q|Q) exit 0 ;;
     *) warn "Opción inválida" ;;
   esac
@@ -691,7 +751,8 @@ if [ $# -gt 0 ]; then
     12) fix_blank_login ;;
     13) install_language_pack ;;
     14) disable_cloud_fonts ;;
-    *) die "Opción inválida: $1 (válidas: 1-14)" ;;
+    15) install_lav_audio_fix ;;
+    *) die "Opción inválida: $1 (válidas: 1-15)" ;;
   esac
   exit 0
 fi
