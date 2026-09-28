@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # install.sh — Office 365 (WineCX) installer for Debian/Ubuntu AND Arch/Manjaro/CachyOS
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/Leimsoto/office365-linux/main/install.sh | bash
-#   curl -fsSL https://raw.githubusercontent.com/Leimsoto/office365-linux/main/install.sh | bash -s -- --yes
+#   curl -fsSL https://raw.githubusercontent.com/Gagedito/office365-linux/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/Gagedito/office365-linux/main/install.sh | bash -s -- --yes
 #
 # Flags:
 #   --yes / -y      Non-interactive, assume yes
@@ -25,7 +25,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # ----- config -----
-REPO_OWNER="Leimsoto"
+REPO_OWNER="Gagedito"
 REPO_NAME="office365-linux"
 DEFAULT_TAG="v1.0.0"
 INSTALLER_BRANCH="${OFFICE365_INSTALLER_BRANCH:-main}"
@@ -46,17 +46,17 @@ declare -A SHA256=(
 # CachyOS-specific assets (fallback)
 CACHY_ZIP="winecx_cachy.zip"
 CACHY_ZIP_SHA="4dfe3b8b89edc2a65a98f92f19b4ab51b3504052853f1b71f38ff91dd2886219"
-CACHY_ZIP_URL="https://github.com/Leimsoto/office365-linux/releases/download/v1.0.0/winecx_cachy.zip"
+CACHY_ZIP_URL="https://github.com/Gagedito/office365-linux/releases/download/v1.0.0/winecx_cachy.zip"
 
 # Arch-specific assets (fallback)
 ARCH_ZIP="winecx_arch.zip"
 ARCH_ZIP_SHA="2459b0920a33a15791100648393e168fe296f248abdb7ae2eb44c932e252c6fe"
-ARCH_ZIP_URL="https://github.com/Leimsoto/office365-linux/releases/download/v1.0.0/winecx_arch.zip"
+ARCH_ZIP_URL="https://github.com/Gagedito/office365-linux/releases/download/v1.0.0/winecx_arch.zip"
 
 # Manjaro-specific assets (fallback)
 MANJARO_ZIP="winecx_manjaro.zip"
 MANJARO_ZIP_SHA="456bbe42831fa2e6ac7cc48529ab183e4066383136eae14c80b412d75ea63bc0"
-MANJARO_ZIP_URL="https://github.com/Leimsoto/office365-linux/releases/download/v1.0.0/winecx_manjaro.zip"
+MANJARO_ZIP_URL="https://github.com/Gagedito/office365-linux/releases/download/v1.0.0/winecx_manjaro.zip"
 
 # ----- args -----
 ASSUME_YES=0
@@ -105,7 +105,7 @@ confirm() {
 cat <<'BANNER'
 =========================================================
    Microsoft Office 365 (WineCX) — Linux installer
-   Repo: https://github.com/Leimsoto/office365-linux
+   Repo: https://github.com/Gagedito/office365-linux
    License: GPL-3.0
 =========================================================
 BANNER

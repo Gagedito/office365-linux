@@ -20,13 +20,13 @@ Instalador automático de **Microsoft Office 365** (Word, Excel, PowerPoint, Out
 ## Instalación rápida (una línea)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Leimsoto/office365-linux/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Gagedito/office365-linux/main/install.sh | bash
 ```
 
 Modo no interactivo (CI / scripting):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Leimsoto/office365-linux/main/install.sh | bash -s -- --yes
+curl -fsSL https://raw.githubusercontent.com/Gagedito/office365-linux/main/install.sh | bash -s -- --yes
 ```
 
 Flags disponibles:
@@ -77,7 +77,7 @@ Al terminar verás **Word 365**, **Excel 365**, **PowerPoint 365**, **Outlook 36
 
 ```bash
 # 1. Clonar el repo
-git clone https://github.com/Leimsoto/office365-linux.git
+git clone https://github.com/Gagedito/office365-linux.git
 cd office365-linux
 
 # 2. Lanzar el instalador
@@ -85,7 +85,7 @@ chmod +x install.sh
 ./install.sh
 ```
 
-O bien descargar manualmente los assets del [último release](https://github.com/Leimsoto/office365-linux/releases/latest) a `~/Descargas` y ejecutar:
+O bien descargar manualmente los assets del [último release](https://github.com/Gagedito/office365-linux/releases/latest) a `~/Descargas` y ejecutar:
 
 ```bash
 cd ~/Descargas
@@ -99,7 +99,7 @@ bash office365-linux/scripts/instalar-office365-winecx.sh
 ## Desinstalación
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Leimsoto/office365-linux/main/scripts/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Gagedito/office365-linux/main/scripts/uninstall.sh | bash
 ```
 
 O manual:
@@ -154,13 +154,13 @@ Para todo: reparar pacman.conf en Artix, instalar fonts extra, matar procesos
 colgados, re-inicializar prefix, verificar estado, limpiar cache, reinstalar.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Leimsoto/office365-linux/main/scripts/fixes.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Gagedito/office365-linux/main/scripts/fixes.sh | bash
 ```
 
 Modo directo (sin menú, ejecuta la opción y sale):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Leimsoto/office365-linux/main/scripts/fixes.sh | bash -s -- 2
+curl -fsSL https://raw.githubusercontent.com/Gagedito/office365-linux/main/scripts/fixes.sh | bash -s -- 2
 ```
 
 | Opción | Acción |
@@ -192,7 +192,7 @@ WINEPREFIX="$HOME/.Microsoft_Office_365" /opt/winecx/bin/wineserver -k
 **Fuentes faltantes**
 ```bash
 # Vía fixes.sh (recomendado)
-curl -fsSL https://raw.githubusercontent.com/Leimsoto/office365-linux/main/scripts/fixes.sh | bash -s -- 2
+curl -fsSL https://raw.githubusercontent.com/Gagedito/office365-linux/main/scripts/fixes.sh | bash -s -- 2
 ```
 
 **`dpkg: error: package architecture (i386) does not match`**

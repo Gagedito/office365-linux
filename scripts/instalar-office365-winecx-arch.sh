@@ -362,7 +362,7 @@ fi
 # ---------------------------------------------------------
 # 6) Bundle nettle/gnutls 3.7 (fix ABI break con nettle 4.0 del sistema)
 # ---------------------------------------------------------
-BUNDLE_URL="https://github.com/Leimsoto/office365-linux/releases/download/v1.0.0/arch-winecx-libs.tar.zst"
+BUNDLE_URL="https://github.com/Gagedito/office365-linux/releases/download/v1.0.0/arch-winecx-libs.tar.zst"
 BUNDLE_SHA="6d5f93258a8159fc585d6dc0389e4f42fae6e7814da3ff0e4e750a044aefaf5e"
 BUNDLE_TGT="$WORKDIR/arch-winecx-libs.tar.zst"
 
@@ -398,17 +398,17 @@ if [[ "$WINE_VER" == *"FAILED"* ]] || [[ "$WINE_VER" == *"error"* ]] || [[ "$WIN
   if [ "$ID" = "cachyos" ] && [ -f "$WORKDIR/winecx_cachy.zip" ]; then
     FALLBACK_ZIP="winecx_cachy.zip"
     FALLBACK_SHA="4dfe3b8b89edc2a65a98f92f19b4ab51b3504052853f1b71f38ff91dd2886219"
-    FALLBACK_URL="https://github.com/Leimsoto/office365-linux/releases/download/v1.0.0/winecx_cachy.zip"
+    FALLBACK_URL="https://github.com/Gagedito/office365-linux/releases/download/v1.0.0/winecx_cachy.zip"
     warn "Intentando fallback: winecx_cachy.zip (CachyOS native build)"
   elif [ "$ID" = "manjaro" ] && [ -f "$WORKDIR/winecx_manjaro.zip" ]; then
     FALLBACK_ZIP="winecx_manjaro.zip"
     FALLBACK_SHA="456bbe42831fa2e6ac7cc48529ab183e4066383136eae14c80b412d75ea63bc0"
-    FALLBACK_URL="https://github.com/Leimsoto/office365-linux/releases/download/v1.0.0/winecx_manjaro.zip"
+    FALLBACK_URL="https://github.com/Gagedito/office365-linux/releases/download/v1.0.0/winecx_manjaro.zip"
     warn "Intentando fallback: winecx_manjaro.zip (Manjaro native build)"
   elif [ -f "$WORKDIR/winecx_arch.zip" ]; then
     FALLBACK_ZIP="winecx_arch.zip"
     FALLBACK_SHA="2459b0920a33a15791100648393e168fe296f248abdb7ae2eb44c932e252c6fe"
-    FALLBACK_URL="https://github.com/Leimsoto/office365-linux/releases/download/v1.0.0/winecx_arch.zip"
+    FALLBACK_URL="https://github.com/Gagedito/office365-linux/releases/download/v1.0.0/winecx_arch.zip"
     warn "Intentando fallback: winecx_arch.zip (Arch native build)"
   fi
   

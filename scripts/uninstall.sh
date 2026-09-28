@@ -2,7 +2,7 @@
 # uninstall.sh — Smart Office uninstaller for all distros
 # Auto-detects distro and Office version installed
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/Leimsoto/office365-linux/main/scripts/uninstall.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/Gagedito/office365-linux/main/scripts/uninstall.sh | bash
 #   bash uninstall.sh  (if run from repo)
 
 set -euo pipefail
@@ -139,7 +139,7 @@ log "Usando desinstalador: $UNINSTALLER"
 
 # ----- run the uninstaller -----
 SCRIPT_DIR="$(cd "$(dirname "$0")" 2>/dev/null && pwd || echo "")"
-REPO_URL="https://raw.githubusercontent.com/Leimsoto/office365-linux/main/scripts"
+REPO_URL="https://raw.githubusercontent.com/Gagedito/office365-linux/main/scripts"
 
 if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/$UNINSTALLER" ]; then
   # Running from repo clone

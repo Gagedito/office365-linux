@@ -126,7 +126,7 @@ sudo dnf install -y mingw64-gcc mingw64-gcc-c++ mingw64-binutils \
 # ---------------------------------------------------------
 # 2) Bajar assets repo: winecx.zip + Requerimientos + Fuentes
 # ---------------------------------------------------------
-BASE_URL="https://github.com/Leimsoto/office365-linux/releases/download/v1.0.0"
+BASE_URL="https://github.com/Gagedito/office365-linux/releases/download/v1.0.0"
 declare -A ASSETS=(
    ["winecx.zip"]="4835f40619af3d44b49e313d5eabfdb3442c15025d3d79d62760c9532bc58656"
   ["Requerimientos-Office-2016.zip"]="2088b46518ab3095c649f8a16197bf33de3a9b9fbc4c199db10bcc310ef0ebf1"

@@ -4,7 +4,7 @@
 # Para Fedora se usa Office 2016 (ver scripts específicos).
 #
 # Uso:
-#   curl -fsSL https://raw.githubusercontent.com/Leimsoto/office365-linux/main/scripts/fixes.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/Gagedito/office365-linux/main/scripts/fixes.sh | bash
 #   (también puede invocarse con un número directo: bash fixes.sh 2)
 
 set -euo pipefail
@@ -356,7 +356,7 @@ uninstall_all() {
   read -r -p "¿Confirmas? [y/N]: " ans </dev/tty
   [[ ! "$ans" =~ ^[Yy]$ ]] && { log "Cancelado"; return; }
   # Smart uninstaller auto-detects distro and Office version
-  curl -fsSL https://raw.githubusercontent.com/Leimsoto/office365-linux/main/scripts/uninstall.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/Gagedito/office365-linux/main/scripts/uninstall.sh | bash
 }
 
 # ============================================================
@@ -580,7 +580,7 @@ reinstall() {
   read -r -p "¿Confirmas? [y/N]: " ans </dev/tty
   [[ ! "$ans" =~ ^[Yy]$ ]] && { log "Cancelado"; return; }
   uninstall_all
-  curl -fsSL https://raw.githubusercontent.com/Leimsoto/office365-linux/main/install.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/Gagedito/office365-linux/main/install.sh | bash
 }
 
 # ============================================================
